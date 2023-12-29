@@ -35,6 +35,7 @@
         android:label="MasterRepair"
         android:networkSecurityConfig="@xml/network_security_config"
         android:supportsRtl="true"
+        android:requestLegacyExternalStorage="true"
         android:theme="@style/AppTheme"
         tools:replace="android:name">
         <!--Android FileProvider 7.0及以上版本APP覆盖安装适配-->

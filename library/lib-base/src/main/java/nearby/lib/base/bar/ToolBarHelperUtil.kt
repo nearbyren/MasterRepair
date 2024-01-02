@@ -145,7 +145,7 @@ data class ToolBarHelperUtil(
             toolbarId.setNavigationOnClickListener {
                 barHelperConfig!!.onBackListener?.let {
                     it.onBackClick()
-                }.run {
+                } .run {
                     activity.finish()
                     activity.overridePendingTransition(R.anim.anim_no, R.anim.anim_no)
                 }

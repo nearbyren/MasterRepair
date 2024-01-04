@@ -19,13 +19,15 @@ class LauncherActivity : BaseAppBVMActivity<ActivityLauncherBinding, IndexViewMo
 
 
     override fun initialize(savedInstanceState: Bundle?) {
-        viewModel.start()
-        viewModel.start.observe(this) {
-            if (it) {
-                navigate(ActivateActivity::class.java)
-                finishPage(LauncherActivity@ this)
-            }
-        }
+        navigate(ActivateActivity::class.java)
+        finishPage(LauncherActivity@ this)
+//        viewModel.start()
+//        viewModel.start.observe(this) {
+//            if (it) {
+//                navigate(ActivateActivity::class.java)
+//                finishPage(LauncherActivity@ this)
+//            }
+//        }
         intent?.let {
             println("MessagingService intent")
             println("MessagingService ${it.getStringExtra("key1")} - ${it.getStringExtra("key2")}")

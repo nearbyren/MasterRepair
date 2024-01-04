@@ -205,11 +205,6 @@ dependencies {
     androidTestImplementation Testing.androidJunit
     androidTestImplementation Testing.espresso
     implementation files('libs\\crasheye-2.3.7.jar')
-    api project(path: ':library:lib-mvvm')
-    api project(path: ':library:lib-netwrok')
-    api project(path: ':library:lib-base')
-    api project(path: ':library:lib-router')
-    api project(path: ':library:lib-signal')
     api Lib.smarttablayout
     api Lib.smarttablayoutUtils
     api AndroidX.constraintlayout.constraintLayout
@@ -227,5 +222,18 @@ dependencies {
 
     //腾讯云推送
     implementation 'com.tencent.tpns:tpns:1.4.3.4-release'
+
+    implementation 'nearby.app:lib-netwrok:0.0.2'
+    implementation 'nearby.app:lib-base:0.0.2'
+    implementation 'nearby.app:lib-router:0.0.1'
+    implementation 'nearby.app:lib-mvvm:0.0.1'
+    implementation 'nearby.app:lib-signal:0.0.1'
+
+
+//    api project(path: ':library:lib-mvvm')
+//    api project(path: ':library:lib-netwrok')
+//    api project(path: ':library:lib-base')
+//    api project(path: ':library:lib-router')
+//    api project(path: ':library:lib-signal')
 
 }

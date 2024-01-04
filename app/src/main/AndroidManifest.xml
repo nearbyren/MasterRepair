@@ -41,7 +41,7 @@
         <!--Android FileProvider 7.0及以上版本APP覆盖安装适配-->
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="${applicationId}.fileprovider"
+            android:authorities="${applicationId}.fileProvider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -103,13 +103,13 @@
         <activity
             android:name="apps.master.repair.ui.LoginActivity"
             android:exported="true"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme"/>
 
         <!--登錄註冊頁-->
         <activity
             android:name="apps.master.repair.ui.ActivateActivity"
             android:exported="true"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme"/>
 
         <!--更改密碼-->
         <activity

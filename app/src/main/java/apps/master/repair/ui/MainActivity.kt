@@ -11,19 +11,24 @@ import apps.master.repair.R
 import apps.master.repair.databinding.ActivityMainBinding
 import apps.master.repair.fragment.IndexFragment1
 import apps.master.repair.fragment.IndexFragment2
+import apps.master.repair.http.IndexViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.navigation.NavigationBarView
 import nearby.lib.base.uitl.AppManager
 import nearby.lib.base.uitl.ToastUtils
+import nearby.lib.mvvm.activity.BaseAppBVMActivity
 import nearby.lib.mvvm.activity.BaseAppBindActivity
 import nearby.lib.signal.livebus.LiveBus
 
 
-class MainActivity : BaseAppBindActivity<ActivityMainBinding>() {
+class MainActivity : BaseAppBVMActivity<ActivityMainBinding, IndexViewModel>() {
 
     private val index1 by lazy { IndexFragment1() }
     private val index2 by lazy { IndexFragment2() }
+    override fun createViewModel(): IndexViewModel {
+        return IndexViewModel()
+    }
 
 
     override fun layoutRes(): Int {

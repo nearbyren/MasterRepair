@@ -50,7 +50,7 @@
                 android:paddingBottom="@dimen/dp_20">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/huiyuan"
+                    android:id="@+id/member_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_25"
@@ -62,13 +62,13 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/huiyuan_info"
+                    android:id="@+id/member_name_info"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_70"
                     android:layout_margin="@dimen/dp_20"
                     android:background="@drawable/index_index_bg_white2"
                     android:padding="@dimen/dp_8"
-                    app:layout_constraintTop_toBottomOf="@+id/huiyuan">
+                    app:layout_constraintTop_toBottomOf="@+id/member_name">
 
 
                     <androidx.appcompat.widget.AppCompatImageView
@@ -102,7 +102,7 @@
 
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/address"
+                    android:id="@+id/repairs_locations"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_25"
@@ -111,11 +111,11 @@
                     android:textColor="@color/info_22222"
                     android:textSize="@dimen/sp_14"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/huiyuan_info" />
+                    app:layout_constraintTop_toBottomOf="@+id/member_name_info" />
 
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/address_text"
+                    android:id="@+id/repairs_locations_text"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_42"
                     android:layout_marginLeft="@dimen/dp_25"
@@ -130,10 +130,10 @@
                     android:textSize="@dimen/sp_14"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/address" />
+                    app:layout_constraintTop_toBottomOf="@+id/repairs_locations" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/jinji"
+                    android:id="@+id/urgent_level"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_25"
@@ -142,11 +142,11 @@
                     android:textColor="@color/info_22222"
                     android:textSize="@dimen/sp_14"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/address_text" />
+                    app:layout_constraintTop_toBottomOf="@+id/repairs_locations_text" />
 
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/jinji_text"
+                    android:id="@+id/urgent_level_text"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_42"
                     android:layout_marginLeft="@dimen/dp_25"
@@ -161,11 +161,11 @@
                     android:textSize="@dimen/sp_14"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/jinji" />
+                    app:layout_constraintTop_toBottomOf="@+id/urgent_level" />
 
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/lianlxm"
+                    android:id="@+id/contact_person_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_25"
@@ -174,11 +174,11 @@
                     android:textColor="@color/info_22222"
                     android:textSize="@dimen/sp_14"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/jinji_text" />
+                    app:layout_constraintTop_toBottomOf="@+id/urgent_level_text" />
 
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/lianlxm_text"
+                    android:id="@+id/contact_person_name_text"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_42"
                     android:layout_marginLeft="@dimen/dp_25"
@@ -193,11 +193,11 @@
                     android:textSize="@dimen/sp_14"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/lianlxm" />
+                    app:layout_constraintTop_toBottomOf="@+id/contact_person_name" />
 
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/dianhua"
+                    android:id="@+id/telephone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_25"
@@ -206,11 +206,11 @@
                     android:textColor="@color/info_22222"
                     android:textSize="@dimen/sp_14"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/lianlxm_text" />
+                    app:layout_constraintTop_toBottomOf="@+id/contact_person_name_text" />
 
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/dianhua_text"
+                    android:id="@+id/telephone_text"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_42"
                     android:layout_marginLeft="@dimen/dp_25"
@@ -225,7 +225,7 @@
                     android:textSize="@dimen/sp_14"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/dianhua" />
+                    app:layout_constraintTop_toBottomOf="@+id/telephone" />
 
 
 
@@ -240,10 +240,10 @@
                     android:textColor="@color/info_22222"
                     android:textSize="@dimen/sp_14"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/dianhua_text" />
+                    app:layout_constraintTop_toBottomOf="@+id/telephone_text" />
 
 
-                <androidx.appcompat.widget.AppCompatEditText
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/detail_text"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_80"
@@ -276,7 +276,7 @@
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/cl_address"
+                    android:id="@+id/cl_repairs_address"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_122"
                     android:layout_marginLeft="@dimen/dp_25"
@@ -286,7 +286,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/picture">
 
                     <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/iv_rep_loc1"
+                        android:id="@+id/iv_repairs_address"
                         android:layout_width="@dimen/dp_102"
                         android:layout_height="@dimen/dp_102"
                         android:layout_marginLeft="@dimen/dp_20"
@@ -303,7 +303,7 @@
 
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/picture1"
+                    android:id="@+id/repairs_picture"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_25"
@@ -312,20 +312,20 @@
                     android:textColor="@color/info_22222"
                     android:textSize="@dimen/sp_14"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cl_address" />
+                    app:layout_constraintTop_toBottomOf="@+id/cl_repairs_address" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/cl_picture"
+                    android:id="@+id/cl_repairs_picture"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_25"
                     android:layout_marginTop="@dimen/dp_8"
                     android:layout_marginRight="@dimen/dp_25"
                     android:background="@drawable/edit_bg_layer_list"
-                    app:layout_constraintTop_toBottomOf="@+id/picture1">
+                    app:layout_constraintTop_toBottomOf="@+id/repairs_picture">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recycle2"
+                        android:id="@+id/recycle_repairs_picture"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/dp_12"
@@ -342,7 +342,7 @@
 
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/wangong"
+                    android:id="@+id/completed_photos"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_25"
@@ -351,20 +351,20 @@
                     android:textColor="@color/info_22222"
                     android:textSize="@dimen/sp_14"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cl_picture" />
+                    app:layout_constraintTop_toBottomOf="@+id/cl_repairs_picture" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/cl_wangong"
+                    android:id="@+id/cl_completed_photos"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_25"
                     android:layout_marginTop="@dimen/dp_8"
                     android:layout_marginRight="@dimen/dp_25"
                     android:background="@drawable/edit_bg_layer_list"
-                    app:layout_constraintTop_toBottomOf="@+id/wangong">
+                    app:layout_constraintTop_toBottomOf="@+id/completed_photos">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recycle"
+                        android:id="@+id/recycle_completed"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/dp_12"
@@ -393,7 +393,7 @@
                     android:textSize="@dimen/sp_16"
                     app:layout_constraintLeft_toRightOf="@id/guideline"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cl_wangong" />
+                    app:layout_constraintTop_toBottomOf="@+id/cl_completed_photos" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>

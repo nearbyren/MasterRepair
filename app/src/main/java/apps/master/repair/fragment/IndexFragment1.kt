@@ -14,7 +14,10 @@ import com.scwang.smart.refresh.header.ClassicsHeader
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener
 import nearby.lib.base.bar.BarHelperConfig
+import nearby.lib.base.exts.observeNonNull
+import nearby.lib.base.uitl.SPreUtil
 import nearby.lib.mvvm.fragment.BaseAppBVMFragment
+import nearby.lib.signal.livebus.LiveBus
 import nearby.lib.uikit.recyclerview.BaseRecyclerAdapter
 import nearby.lib.uikit.recyclerview.SpaceItemDecoration
 import nearby.lib.uikit.widgets.dpToPx
@@ -34,83 +37,40 @@ class IndexFragment1 :
     override fun layoutRes(): Int {
         return R.layout.fragment_index_1
     }
-
+    private fun toNetwork() {
+        //請求維修列表
+        val id = SPreUtil[requireActivity(), "id", 1]
+        viewModel.staff(id.toString())
+    }
     private var activityItems = mutableListOf<ServiceDto>()
     private val indexTagAdapter by lazy { apps.master.repair.adapter.ItemServiceStatusAdapter() }
     private var layoutManager: LinearLayoutManager? = null
+    private var isRefresh = false
+    var requestDialog: RequestCompleteDialogFragment? = null
     override fun initialize(savedInstanceState: Bundle?) {
-        activityItems.add(
-            ServiceDto(
-                "學校大門",
-                "編號",
-                "預備報價中",
-                ConstantUtil.SERVICE_STATUS_QUOTE
-            )
-        )
-        activityItems.add(
-            ServiceDto(
-                "學校大門",
-                "編號",
-                "已报价，等待確認",
-                ConstantUtil.SERVICE_STATUS_QUOTED
-            )
-        )
-        activityItems.add(
-            ServiceDto(
-                "學校大門",
-                "編號",
-                "已确认，正在安排师傅",
-                ConstantUtil.SERVICE_STATUS_CONFIRM
-            )
-        )
-        activityItems.add(
-            ServiceDto(
-                "學校大門",
-                "編號",
-                "已完成",
-                ConstantUtil.SERVICE_STATUS_FINISH
-            )
-        )
-        activityItems.add(
-            ServiceDto(
-                "學校大門",
-                "編號",
-                "預備報價中",
-                ConstantUtil.SERVICE_STATUS_QUOTE
-            )
-        )
-        activityItems.add(
-            ServiceDto(
-                "學校大門",
-                "編號",
-                "已报价，等待確認",
-                ConstantUtil.SERVICE_STATUS_QUOTED
-            )
-        )
-        activityItems.add(
-            ServiceDto(
-                "學校大門",
-                "編號",
-                "已确认，正在安排师傅",
-                ConstantUtil.SERVICE_STATUS_CONFIRM
-            )
-        )
-        activityItems.add(
-            ServiceDto(
-                "學校大門",
-                "編號",
-                "已完成",
-                ConstantUtil.SERVICE_STATUS_FINISH
-            )
-        )
-        activityItems.add(
-            ServiceDto(
-                "學校大門",
-                "編號",
-                "預備報價中",
-                ConstantUtil.SERVICE_STATUS_QUOTE
-            )
-        )
+
+        viewModel.serviceDtos.observeNonNull(this) {
+            // 这里可以异步请求数据，刷新完成后调用 refreshLayout.finishRefresh()
+            binding.srl.finishRefresh()
+            if (isRefresh) activityItems.clear()
+            if (it.size == 0) {
+                return@observeNonNull
+            }
+            activityItems.addAll(it)
+            indexTagAdapter.notifyDataSetChanged()
+        }
+        initRefresh()
+        toNetwork()
+        LiveBus.get("confirm").observe(this) {
+            println("刷新列表")
+            requestDialog?.let { request ->
+                request.dismiss()
+            }
+            toNetwork()
+        }
+
+    }
+    private fun initRefresh() {
         layoutManager = LinearLayoutManager(context)
         indexTagAdapter.setItems(activityItems)
         binding.recycle.adapter = indexTagAdapter
@@ -121,34 +81,28 @@ class IndexFragment1 :
         indexTagAdapter.setOnItemClickListener(listener = object :
             BaseRecyclerAdapter.OnItemClickListener<ServiceDto> {
             override fun onItemClick(holder: Any, item: ServiceDto, position: Int) {
-                val request = RequestCompleteDialogFragment()
-                val bundle = Bundle()
-                bundle.putInt("status", item.status)
-                bundle.putString("address", item.schoolName)
-                bundle.putString("status_text", item.statusText)
-                request.arguments = bundle
-                request.setGravity(Gravity.BOTTOM)
-                request.show(this@IndexFragment1)
+                requestDialog = RequestCompleteDialogFragment()
+                requestDialog?.let { request->
+                    val bundle = Bundle()
+                    bundle.putString("numbers", item.numbers)
+                    request.arguments = bundle
+                    request.setGravity(Gravity.BOTTOM)
+                    request.show(this@IndexFragment1)
+                }
+
             }
         })
+
         binding.srl.setRefreshHeader(ClassicsHeader(requireActivity()))
-        binding.srl.setRefreshFooter( ClassicsFooter(requireActivity()))
+        binding.srl.setRefreshFooter(ClassicsFooter(requireActivity()))
         //设置 Footer 为 球脉冲 样式
 //        binding.srl.setRefreshFooter(BallPulseFooter(requireActivity()).setSpinnerStyle(SpinnerStyle.Scale));
 
         binding.srl.setOnRefreshListener(OnRefreshListener { refreshlayout ->
-            refreshlayout.finishRefresh(2000 /*,false*/) //传入false表示刷新失败
-        })
-        binding.srl.setOnLoadMoreListener(OnLoadMoreListener { refreshlayout ->
-            refreshlayout.finishLoadMore(2000 /*,false*/) //传入false表示加载失败
+            isRefresh = true
+            toNetwork()
         })
 
-
-        // 设置下拉刷新监听
-        binding.srl.setOnRefreshListener { refreshLayout -> // 执行刷新操作
-            // 这里可以异步请求数据，刷新完成后调用 refreshLayout.finishRefresh()
-            binding.srl.finishRefresh()
-        }
 
         // 设置上拉加载更多监听
         binding.srl.setOnLoadMoreListener { refreshLayout -> // 执行加载更多操作

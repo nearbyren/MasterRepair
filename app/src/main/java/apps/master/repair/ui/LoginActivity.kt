@@ -2,17 +2,24 @@ package apps.master.repair.ui
 
 import android.content.Context
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.Gravity
 import android.view.inputmethod.InputMethodManager
 import apps.master.repair.R
 import apps.master.repair.databinding.ActivityLoginBinding
+import apps.master.repair.http.IndexViewModel
 import com.app.toast.ToastX
 import com.app.toast.expand.dp
 import nearby.lib.base.bar.BarHelperConfig
+import nearby.lib.base.exts.observeNonNull
+import nearby.lib.base.uitl.AppManager
+import nearby.lib.base.uitl.SPreUtil
+import nearby.lib.mvvm.activity.BaseAppBVMActivity
 import nearby.lib.mvvm.activity.BaseAppBindActivity
+import nearby.lib.mvvm.activity.BaseBVMActivity
 
 
-class LoginActivity : BaseAppBindActivity<ActivityLoginBinding>() {
+class LoginActivity : BaseAppBVMActivity<ActivityLoginBinding, IndexViewModel>() {
 
 
     override fun layoutRes(): Int {
@@ -24,27 +31,35 @@ class LoginActivity : BaseAppBindActivity<ActivityLoginBinding>() {
         binding.button.setOnClickListener {
             go()
         }
+        viewModel.login.observeNonNull(this) {
+            if (!TextUtils.isEmpty(it.message)) {
+                toast(it.message!!)
+                return@observeNonNull
+            }
+            SPreUtil.put(this@LoginActivity,"id",it.id)
+            SPreUtil.put(this@LoginActivity,"email",it.email.toString())
+            SPreUtil.put(this@LoginActivity,"name",it.name.toString())
+            SPreUtil.put(this@LoginActivity,"shoolName",it.shoolName.toString())
+            SPreUtil.put(this@LoginActivity,"token",it.token.toString())
+            SPreUtil.put(this@LoginActivity,"isLogin",true)
+            println("進入主界面")
+            navigate(MainActivity::class.java)
+            AppManager.getInstance().finishAllActivity()
+        }
     }
 
     private fun go() {
         val email = binding.emailEt.text.toString()
         val password = binding.passwordEt.text.toString()
-//            if (TextUtils.isEmpty(email)) {
-//                toast("請輸入郵件賬號")
-//                return@setOnClickListener
-//            }
-//            if (TextUtils.isEmpty(password)) {
-//                toast("請輸入密碼")
-//                return@setOnClickListener
-//            }
-
-//                val getEmail = SPreUtil[this@SignInLoginActivity, "email", ""]
-//                val getPassword = SPreUtil[this@SignInLoginActivity, "password", ""]
-//                if (email== getEmail && password == getPassword) {
-        navigate(MainActivity::class.java)
-        finishPage(SignInLoginActivity@ this)
-
-
+        if (TextUtils.isEmpty(email)) {
+            toast("請輸入郵件賬號")
+            return
+        }
+        if (TextUtils.isEmpty(password)) {
+            toast("請輸入密碼")
+            return
+        }
+        viewModel.login(email, password)
     }
 
 
@@ -69,6 +84,10 @@ class LoginActivity : BaseAppBindActivity<ActivityLoginBinding>() {
             .offset(44.dp) //距离顶部或者底部的偏移量
             .duration(2000)
             .show() //显示
+    }
+
+    override fun createViewModel(): IndexViewModel {
+        TODO("Not yet implemented")
     }
 
     override fun onDestroy() {

@@ -1,4 +1,4 @@
-package apps.master.repair.uitl
+package nearby.lib.base.uitl
 
 import android.content.Context
 import android.content.SharedPreferences
